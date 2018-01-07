@@ -1,13 +1,10 @@
-# kt-result
+# result
 
 [![CI](https://github.com/philiprehberger/kt-result/actions/workflows/publish.yml/badge.svg)](https://github.com/philiprehberger/kt-result/actions/workflows/publish.yml)
 [![Maven Central](https://img.shields.io/maven-central/v/com.philiprehberger/result)](https://central.sonatype.com/artifact/com.philiprehberger/result)
+[![License](https://img.shields.io/github/license/philiprehberger/kt-result)](LICENSE)
 
 A lightweight, typed Result monad for Kotlin with railway-oriented error handling.
-
-## Requirements
-
-- Kotlin 1.9+ / Java 17+
 
 ## Installation
 
@@ -15,7 +12,7 @@ A lightweight, typed Result monad for Kotlin with railway-oriented error handlin
 
 ```kotlin
 dependencies {
-    implementation("com.philiprehberger:result:0.1.0")
+    implementation("com.philiprehberger:result:0.1.3")
 }
 ```
 
@@ -33,7 +30,7 @@ dependencies {
 <dependency>
     <groupId>com.philiprehberger</groupId>
     <artifactId>result</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.3</version>
 </dependency>
 ```
 
