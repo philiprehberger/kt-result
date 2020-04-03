@@ -1,9 +1,8 @@
 # result
 
 [![Tests](https://github.com/philiprehberger/kt-result/actions/workflows/publish.yml/badge.svg)](https://github.com/philiprehberger/kt-result/actions/workflows/publish.yml)
-[![Maven Central](https://img.shields.io/maven-central/v/com.philiprehberger/result)](https://central.sonatype.com/artifact/com.philiprehberger/result)
-[![License](https://img.shields.io/github/license/philiprehberger/kt-result)](LICENSE)
-[![Sponsor](https://img.shields.io/badge/sponsor-GitHub%20Sponsors-ec6cb9)](https://github.com/sponsors/philiprehberger)
+[![Maven Central](https://img.shields.io/maven-central/v/com.philiprehberger/result.svg)](https://central.sonatype.com/artifact/com.philiprehberger/result)
+[![Last updated](https://img.shields.io/github/last-commit/philiprehberger/kt-result)](https://github.com/philiprehberger/kt-result/commits/main)
 
 A lightweight, typed Result monad for Kotlin with railway-oriented error handling.
 
@@ -97,6 +96,24 @@ result
 ./gradlew build      # Build JAR
 ```
 
+## Support
+
+If you find this project useful:
+
+⭐ [Star the repo](https://github.com/philiprehberger/kt-result)
+
+🐛 [Report issues](https://github.com/philiprehberger/kt-result/issues?q=is%3Aissue+is%3Aopen+label%3Abug)
+
+💡 [Suggest features](https://github.com/philiprehberger/kt-result/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement)
+
+❤️ [Sponsor development](https://github.com/sponsors/philiprehberger)
+
+🌐 [All Open Source Projects](https://philiprehberger.com/open-source-packages)
+
+💻 [GitHub Profile](https://github.com/philiprehberger)
+
+🔗 [LinkedIn Profile](https://www.linkedin.com/in/philiprehberger)
+
 ## License
 
-MIT
+[MIT](LICENSE)
