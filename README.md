@@ -11,7 +11,7 @@ A lightweight, typed Result monad for Kotlin with railway-oriented error handlin
 ### Gradle (Kotlin DSL)
 
 ```kotlin
-implementation("com.philiprehberger:result:0.1.4")
+implementation("com.philiprehberger:result:0.2.0")
 ```
 
 ### Maven
@@ -20,7 +20,7 @@ implementation("com.philiprehberger:result:0.1.4")
 <dependency>
     <groupId>com.philiprehberger</groupId>
     <artifactId>result</artifactId>
-    <version>0.1.4</version>
+    <version>0.2.0</version>
 </dependency>
 ```
 
@@ -72,6 +72,45 @@ result
     .onFailure { println("Failed: ${it.message}") }
 ```
 
+### Filtering Results
+
+```kotlin
+fun validateAge(age: Int): Result<Int, String> =
+    Result.Ok(age).filter({ "Age must be positive" }) { it > 0 }
+
+validateAge(25)  // Ok(25)
+validateAge(-1)  // Err("Age must be positive")
+```
+
+### Transforming Both Sides
+
+```kotlin
+val result: Result<Int, String> = Result.Ok(42)
+
+// bimap transforms both Ok and Err sides
+val mapped = result.bimap({ it.toString() }, { Exception(it) })
+// Ok("42")
+
+// swap exchanges Ok and Err
+val swapped = result.swap()  // Err(42)
+```
+
+### Converting and Merging
+
+```kotlin
+val ok: Result<Int, String> = Result.Ok(42)
+ok.toList()     // [42]
+ok.getOrNull()  // 42
+
+val err: Result<Int, String> = Result.Err("error")
+err.toList()     // []
+err.getOrNull()  // null
+
+// merge extracts value when both types are the same
+val r: Result<String, String> = Result.Ok("hello")
+r.merge()  // "hello"
+```
+
 ## API
 
 | Function / Type | Description |
@@ -87,6 +126,12 @@ result
 | `onSuccess` / `onFailure` | Side-effect callbacks |
 | `resultOf { }` | Catch exceptions into Result |
 | `zip` | Combine 2-5 results |
+| `filter` | Keep Ok if predicate passes, else convert to Err |
+| `swap` | Exchange Ok and Err types |
+| `bimap` | Transform both success and error values |
+| `toList` | Convert to single-element or empty list |
+| `merge` | Extract value when both types match |
+| `getOrNull` | Get success value or null |
 
 ## Development
 
