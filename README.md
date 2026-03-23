@@ -1,6 +1,6 @@
 # result
 
-[![CI](https://github.com/philiprehberger/kt-result/actions/workflows/publish.yml/badge.svg)](https://github.com/philiprehberger/kt-result/actions/workflows/publish.yml)
+[![Tests](https://github.com/philiprehberger/kt-result/actions/workflows/publish.yml/badge.svg)](https://github.com/philiprehberger/kt-result/actions/workflows/publish.yml)
 [![Maven Central](https://img.shields.io/maven-central/v/com.philiprehberger/result)](https://central.sonatype.com/artifact/com.philiprehberger/result)
 [![License](https://img.shields.io/github/license/philiprehberger/kt-result)](LICENSE)
 
@@ -11,17 +11,7 @@ A lightweight, typed Result monad for Kotlin with railway-oriented error handlin
 ### Gradle (Kotlin DSL)
 
 ```kotlin
-dependencies {
-    implementation("com.philiprehberger:result:0.1.3")
-}
-```
-
-### Gradle (Groovy)
-
-```groovy
-dependencies {
-    implementation 'com.philiprehberger:result:0.1.0'
-}
+implementation("com.philiprehberger:result:0.1.4")
 ```
 
 ### Maven
@@ -30,7 +20,7 @@ dependencies {
 <dependency>
     <groupId>com.philiprehberger</groupId>
     <artifactId>result</artifactId>
-    <version>0.1.3</version>
+    <version>0.1.4</version>
 </dependency>
 ```
 
