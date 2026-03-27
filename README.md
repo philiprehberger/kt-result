@@ -3,6 +3,7 @@
 [![Tests](https://github.com/philiprehberger/kt-result/actions/workflows/publish.yml/badge.svg)](https://github.com/philiprehberger/kt-result/actions/workflows/publish.yml)
 [![Maven Central](https://img.shields.io/maven-central/v/com.philiprehberger/result)](https://central.sonatype.com/artifact/com.philiprehberger/result)
 [![License](https://img.shields.io/github/license/philiprehberger/kt-result)](LICENSE)
+[![Sponsor](https://img.shields.io/badge/sponsor-GitHub%20Sponsors-ec6cb9)](https://github.com/sponsors/philiprehberger)
 
 A lightweight, typed Result monad for Kotlin with railway-oriented error handling.
 
