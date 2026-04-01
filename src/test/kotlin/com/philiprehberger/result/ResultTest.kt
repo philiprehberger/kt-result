@@ -173,4 +173,89 @@ class ResultTest {
         val combined = zip(r1, r2, r3, r4, r5) { a, b, c, d, e -> a + b + c + d + e }
         assertEquals(Result.Err("second"), combined)
     }
+
+    @Test
+    fun `filter keeps Ok when predicate passes`() {
+        val result: Result<Int, String> = Result.Ok(10)
+        val filtered = result.filter({ "too small" }) { it > 5 }
+        assertEquals(Result.Ok(10), filtered)
+    }
+
+    @Test
+    fun `filter converts Ok to Err when predicate fails`() {
+        val result: Result<Int, String> = Result.Ok(3)
+        val filtered = result.filter({ "too small" }) { it > 5 }
+        assertEquals(Result.Err("too small"), filtered)
+    }
+
+    @Test
+    fun `filter passes through Err unchanged`() {
+        val result: Result<Int, String> = Result.Err("original")
+        val filtered = result.filter({ "too small" }) { it > 5 }
+        assertEquals(Result.Err("original"), filtered)
+    }
+
+    @Test
+    fun `swap converts Ok to Err`() {
+        val result: Result<Int, String> = Result.Ok(42)
+        val swapped = result.swap()
+        assertEquals(Result.Err(42), swapped)
+    }
+
+    @Test
+    fun `swap converts Err to Ok`() {
+        val result: Result<Int, String> = Result.Err("error")
+        val swapped = result.swap()
+        assertEquals(Result.Ok("error"), swapped)
+    }
+
+    @Test
+    fun `bimap transforms Ok side`() {
+        val result: Result<Int, String> = Result.Ok(10)
+        val mapped = result.bimap({ it * 2 }, { it.length })
+        assertEquals(Result.Ok(20), mapped)
+    }
+
+    @Test
+    fun `bimap transforms Err side`() {
+        val result: Result<Int, String> = Result.Err("hello")
+        val mapped = result.bimap({ it * 2 }, { it.length })
+        assertEquals(Result.Err(5), mapped)
+    }
+
+    @Test
+    fun `toList returns single-element list for Ok`() {
+        val result: Result<Int, String> = Result.Ok(42)
+        assertEquals(listOf(42), result.toList())
+    }
+
+    @Test
+    fun `toList returns empty list for Err`() {
+        val result: Result<Int, String> = Result.Err("error")
+        assertEquals(emptyList(), result.toList())
+    }
+
+    @Test
+    fun `merge returns value from Ok`() {
+        val result: Result<String, String> = Result.Ok("success")
+        assertEquals("success", result.merge())
+    }
+
+    @Test
+    fun `merge returns error from Err`() {
+        val result: Result<String, String> = Result.Err("failure")
+        assertEquals("failure", result.merge())
+    }
+
+    @Test
+    fun `getOrNull returns value for Ok`() {
+        val result: Result<Int, String> = Result.Ok(42)
+        assertEquals(42, result.getOrNull())
+    }
+
+    @Test
+    fun `getOrNull returns null for Err`() {
+        val result: Result<Int, String> = Result.Err("error")
+        assertEquals(null, result.getOrNull())
+    }
 }

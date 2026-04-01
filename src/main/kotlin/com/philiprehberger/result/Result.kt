@@ -203,3 +203,72 @@ public inline fun <T1, T2, T3, T4, T5, E, R> zip(
     r5: Result<T5, E>,
     transform: (T1, T2, T3, T4, T5) -> R,
 ): Result<R, E> = r1.flatMap { t1 -> r2.flatMap { t2 -> r3.flatMap { t3 -> r4.flatMap { t4 -> r5.map { t5 -> transform(t1, t2, t3, t4, t5) } } } } }
+
+/**
+ * Filters the success value using [predicate].
+ * If the predicate returns false, the result is converted to [Result.Err] using [error].
+ *
+ * @param error the error to use if the predicate fails
+ * @param predicate the predicate to test the success value
+ * @return this result if the predicate passes, or [Result.Err] with [error]
+ */
+public inline fun <T, E> Result<T, E>.filter(error: () -> E, predicate: (T) -> Boolean): Result<T, E> = when (this) {
+    is Result.Ok -> if (predicate(value)) this else Result.Err(error())
+    is Result.Err -> this
+}
+
+/**
+ * Swaps the Ok and Err types.
+ *
+ * An [Result.Ok] becomes [Result.Err] and vice versa.
+ *
+ * @return a new [Result] with swapped types
+ */
+public fun <T, E> Result<T, E>.swap(): Result<E, T> = when (this) {
+    is Result.Ok -> Result.Err(value)
+    is Result.Err -> Result.Ok(error)
+}
+
+/**
+ * Transforms both the success and error values simultaneously.
+ *
+ * @param onOk the function to apply to the success value
+ * @param onErr the function to apply to the error value
+ * @return a new [Result] with both sides transformed
+ */
+public inline fun <T, E, R, F> Result<T, E>.bimap(onOk: (T) -> R, onErr: (E) -> F): Result<R, F> = when (this) {
+    is Result.Ok -> Result.Ok(onOk(value))
+    is Result.Err -> Result.Err(onErr(error))
+}
+
+/**
+ * Converts this result to a list.
+ *
+ * [Result.Ok] produces a single-element list; [Result.Err] produces an empty list.
+ *
+ * @return a list containing the success value, or an empty list
+ */
+public fun <T, E> Result<T, E>.toList(): List<T> = when (this) {
+    is Result.Ok -> listOf(value)
+    is Result.Err -> emptyList()
+}
+
+/**
+ * Extracts the value from either side when both types are the same.
+ *
+ * @return the contained value regardless of whether this is [Result.Ok] or [Result.Err]
+ */
+public fun <T> Result<T, T>.merge(): T = when (this) {
+    is Result.Ok -> value
+    is Result.Err -> error
+}
+
+/**
+ * Returns the success value or null if this is an error.
+ *
+ * @return the success value, or null
+ */
+public fun <T, E> Result<T, E>.getOrNull(): T? = when (this) {
+    is Result.Ok -> value
+    is Result.Err -> null
+}

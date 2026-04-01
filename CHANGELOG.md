@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.0 (2026-03-31)
+
+- Add `filter()` for conditional validation of success values
+- Add `swap()` to exchange Ok and Err types
+- Add `bimap()` for transforming both sides simultaneously
+- Add `toList()` to convert result to a list
+- Add `merge()` to extract value when both types are the same
+- Add `getOrNull()` to get success value or null
+
 ## 0.1.5 (2026-03-31)
 
 - Standardize README to 3-badge format with emoji Support section
